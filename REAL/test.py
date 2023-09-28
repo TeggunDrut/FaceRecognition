@@ -2,11 +2,12 @@ import cv2
 import numpy as np
 import tensorflow as tf
 
-img_width = 320
-img_height = 240
-
+# img_width = 640/4
+# img_height = 480/4
+img_width = 160
+img_height = 120
 # Load the trained model
-model = tf.keras.models.load_model('model/my_face_model2.h5')
+model = tf.keras.models.load_model('model/maybe5.h5')
 
 # Function to draw a bounding box on the frame
 def draw_bounding_box(frame, x, y, w, h):
@@ -37,16 +38,13 @@ while True:
     # Denormalize the predicted coordinates
     x, y, w, h = predictions[0]
 
-    print(resized_frame.shape)
     
-    # x *= resized_frame.shape[1]
-    # y *= resized_frame.shape[0]
-    # w *= resized_frame.shape[1]
-    # h *= resized_frame.shape[0]
+    x *= (resized_frame.shape[1] * 4)
+    y *= (resized_frame.shape[0] * 4)
+    w *= (resized_frame.shape[1] * 4)
+    h *= (resized_frame.shape[0] * 4)
     
-    x *= -1/2;
-    y *= -1/2;
-    
+    print(resized_frame.shape[0], resized_frame.shape[1])
     # Draw the bounding box on the frame
     draw_bounding_box(frame, x, y, w, h)
     # draw_bounding_box(frame, 500, 500, 50, 50)
