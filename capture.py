@@ -1,5 +1,7 @@
 import cv2
 import time
+import datetime
+import os
 
 # Initialize the webcam
 cap = cv2.VideoCapture(0)  # 0 is typically the default camera (you might need to change this if you have multiple cameras)
@@ -31,8 +33,13 @@ try:
         current_time = time.time()
         if current_time - last_capture_time >= interval_ms / 1000:
             # Save the captured frame as an image
-            timestamp = int(time.time())
-            image_filename = f"REAL/NewImages/face_{imgNum}.jpg"
+            c_time = datetime.datetime.now().strftime("%Y-%m-%d-%H")
+            
+            # make dir
+            if not os.path.exists(f"REAL/NewImages/{c_time}"):
+                os.makedirs(f"REAL/NewImages/{c_time}")
+            
+            image_filename = f"REAL/NewImages/{c_time}/face_{imgNum}.jpg"
             cv2.imwrite(image_filename, frame)
             print(f"Captured {image_filename}")
 
