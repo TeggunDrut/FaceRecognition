@@ -3,6 +3,15 @@ Real/labels
 Real/NewImages
 Real/FaceRecognition
 Real/FaceRecognition-tfloading
+Real/old_dataset
+Real/logs
+ModifiedOpenLabelling
 images-old
-venv
+.venv
 Real/model
+# Real/aug_data
+Real/Large
+working
+working copy
+custom_dataset
+Test
